@@ -53,4 +53,27 @@ vesselID = "258799000"
 #lookup fleet value for MMSI "258799000"
 vesselDict[vesselID]
 #print "Vessel # 258799000 flies the flag of Norway"
-print("Vessel # " + vesselID + " flies the flag of " + vesselDict[vesselID])    
+print("Vessel # " + vesselID + " flies the flag of " + vesselDict[vesselID]) 
+#%% Task 5
+
+#read in loitering_events_20180723.csv
+fileLoit = open(file = "loitering_events_20180723.csv", mode = 'r')
+
+#create list of all lines in fileLoit
+lineLoit = fileLoit.readlines()
+
+#close loitering_events_20180723.csv
+fileLoit.close()
+
+#create empty dictionary
+loitDict = {}
+
+for loitString in lineLoit:
+    if loitString[0] in "t":
+        continue
+    loitData = loitString.split(',')
+    mmsi =
+    start_lat = 
+    start_long =
+    end_lat = 
+    
