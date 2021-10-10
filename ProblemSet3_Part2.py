@@ -65,15 +65,41 @@ lineLoit = fileLoit.readlines()
 #close loitering_events_20180723.csv
 fileLoit.close()
 
+#create list of header items in fileLoit
+headersLoit = lineLoit[0]
+headers = headersLoit.split(',')
+
+#extract index values for header items
+
+mmsi_indx = headers.index('transshipment_mmsi')
+start_lat_indx = headers.index('starting_latitude')
+start_long_indx = headers.index('starting_longitude')
+end_lat_indx = headers.index('ending_latitude')
+
 #create empty dictionary
 loitDict = {}
 
+#begin loop
 for loitString in lineLoit:
     if loitString[0] in "t":
         continue
+
+#split lines into list of data items   
     loitData = loitString.split(',')
-    mmsi =
-    start_lat = 
-    start_long =
-    end_lat = 
+        
+#create objects individual data items    
+    mmsi2 = loitData[mmsi_indx]
+    start_lat = float(loitData[start_lat_indx])
+    start_long = float(loitData[start_long_indx])
+    end_lat = float(loitData[end_lat_indx])
     
+     #select vessels crossing equator AND starting between 165 and 170 degrees
+     #longitude
+    if (165 < start_long < 170) and ((start_lat < 0 < end_lat) or\
+        (start_lat < 0 < end_lat)):
+
+        #populate loitDict with vessels crossing equator and starting between 
+        #165 and 170 degrees longitude
+        loitDict[mmsi2] = start_long  
+        
+        print("Vessel # " + mmsi2 + " flies the flag of " + vesselDict[mmsi2])     
